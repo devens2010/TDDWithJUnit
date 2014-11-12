@@ -3,6 +3,7 @@ public class Car {
 	private String color;
 	private int speed;
 	private int maxSpeed;
+	private int minSpeed;
 
 	
 	/**
@@ -10,9 +11,10 @@ public class Car {
 	 * @param color
 	 * @param maxSpeed
 	 */
-	public Car(String color, int maxSpeed){
+	public Car(String color, int maxSpeed, int minSpeed){
 		this.color = color;
 		this.maxSpeed = maxSpeed;
+		this.minSpeed = minSpeed;
 		this.speed = 0;
 	}
 	
@@ -38,7 +40,12 @@ public class Car {
 	}
 	
 	public void decelerate(int amount){
-		this.speed-= amount;
+		int stopped = this.minSpeed + this.speed;
+		if(amount >= stopped){
+			this.speed = 0;
+		}else{
+			this.speed-= amount;
+		}
 	}
 	
 	/**
